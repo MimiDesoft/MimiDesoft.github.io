@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificados Colombia - Portal Oficial</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #ffd700;
+            --accent-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #fd7e14;
+            --info-color: #17a2b8;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-warning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.3; }
+            100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .certificate-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .certificate-card:nth-child(1) { animation-delay: 0.1s; }
+        .certificate-card:nth-child(2) { animation-delay: 0.2s; }
+        .certificate-card:nth-child(3) { animation-delay: 0.3s; }
+        .certificate-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .certificate-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .certificate-card.sisben {
+            border-left: 4px solid #28a745;
+        }
+
+        .certificate-card.sisben::before {
+            background: var(--gradient-success);
+        }
+
+        .certificate-card.procuraduria {
+            border-left: 4px solid #dc3545;
+        }
+
+        .certificate-card.procuraduria::before {
+            background: var(--gradient-secondary);
+        }
+
+        .certificate-card.contraloria {
+            border-left: 4px solid #fd7e14;
+        }
+
+        .certificate-card.contraloria::before {
+            background: var(--gradient-warning);
+        }
+
+        .certificate-card.pasado-judicial {
+            border-left: 4px solid #6f42c1;
+        }
+
+        .certificate-card.pasado-judicial::before {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .sisben .card-icon {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: var(--white);
+        }
+
+        .procuraduria .card-icon {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+            color: var(--white);
+        }
+
+        .contraloria .card-icon {
+            background: linear-gradient(135deg, #fd7e14, #ffc107);
+            color: var(--white);
+        }
+
+        .pasado-judicial .card-icon {
+            background: linear-gradient(135deg, #6f42c1, #6610f2);
+            color: var(--white);
+        }
+
+        .certificate-card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .card-description {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .card-features li {
+            padding: 0.5rem 0;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            color: #28a745;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(40, 167, 69, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .btn-access {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-access:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .sisben .btn-access {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .procuraduria .btn-access {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+        }
+
+        .contraloria .btn-access {
+            background: linear-gradient(135deg, #fd7e14, #ffc107);
+        }
+
+        .pasado-judicial .btn-access {
+            background: linear-gradient(135deg, #6f42c1, #6610f2);
+        }
+
+        .info-section {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .info-section h2 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .certificate-card {
+                padding: 1.5rem;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            .certificate-card {
+                padding: 1rem;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mejoras de accesibilidad */
+        .certificate-card:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Estados de carga */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .btn-access::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">🏛️</div>
+            <h1>Certificados Colombia</h1>
+            <p>Accede de forma rápida y segura a tus certificados oficiales sin necesidad de autenticación previa</p>
+        </header>
+
+        <main class="certificates-grid">
+            <div class="certificate-card sisben">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">Certificado SISBEN</h2>
+                <p class="card-description">
+                    Consulta y descarga tu certificado del Sistema de Identificación de Potenciales Beneficiarios 
+                    de Programas Sociales (SISBEN) de manera inmediata.
+                </p>
+                <ul class="card-features">
+                    <li>Consulta gratuita las 24 horas</li>
+                    <li>Descarga inmediata en PDF</li>
+                    <li>Válido para trámites oficiales</li>
+                    <li>Solo necesitas tu número de cédula</li>
+                </ul>
+                <a href="https://www.sisben.gov.co/paginas/consulta-tu-grupo.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-access"
+                   onclick="trackClick('sisben')">
+                    🔗 Acceder al SISBEN
+                </a>
+            </div>
+
+            <div class="certificate-card procuraduria">
+                <div class="card-icon">⚖️</div>
+                <h2 class="card-title">Antecedentes Disciplinarios</h2>
+                <p class="card-description">
+                    Obtén tu certificado de antecedentes disciplinarios expedido por la Procuraduría General 
+                    de la Nación de forma gratuita y en línea.
+                </p>
+                <ul class="card-features">
+                    <li>Certificado oficial y gratuito</li>
+                    <li>Válido por 6 meses</li>
+                    <li>Disponible 24/7</li>
+                    <li>Descarga en formato PDF</li>
+                </ul>
+                <a href="https://www.procuraduria.gov.co/Pages/Generacion-de-antecedentes.aspx" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-access"
+                   onclick="trackClick('procuraduria')">
+                    ⚖️ Ir a Procuraduría
+                </a>
+            </div>
+
+            <div class="certificate-card contraloria">
+                <div class="card-icon">🏛️</div>
+                <h2 class="card-title">Antecedentes Fiscales</h2>
+                <p class="card-description">
+                    Consulta tu certificado de antecedentes fiscales de la Contraloría General de la República 
+                    de manera rápida y confiable.
+                </p>
+                <ul class="card-features">
+                    <li>Expedición inmediata</li>
+                    <li>Certificado con código de verificación</li>
+                    <li>Válido para contratación pública</li>
+                    <li>Consulta sin costo</li>
+                </ul>
+                <a href="https://cfiscal.contraloria.gov.co/certificados/certificadopersonanatural.aspx" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-access"
+                   onclick="trackClick('contraloria')">
+                    🏛️ Ir a Contraloría
+                </a>
+            </div>
+
+            <div class="certificate-card pasado-judicial">
+                <div class="card-icon">🛡️</div>
+                <h2 class="card-title">Antecedentes Judiciales</h2>
+                <p class="card-description">
+                    Descarga tu certificado de antecedentes judiciales expedido por la Policía Nacional 
+                    de Colombia de forma completamente gratuita.
+                </p>
+                <ul class="card-features">
+                    <li>Certificado oficial gratuito</li>
+                    <li>Válido en todo el territorio nacional</li>
+                    <li>Disponible las 24 horas</li>
+                    <li>Con código de verificación</li>
+                </ul>
+                <a href="https://antecedentes.policia.gov.co:7005/WebJudicial/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-access"
+                   onclick="trackClick('pasado-judicial')">
+                    🛡️ Ir a Policía Nacional
+                </a>
+            </div>
+        </main>
+
+        <section class="info-section">
+            <h2>📋 Información Importante</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🔒 Seguridad y Privacidad</h3>
+                    <p>
+                        Todos los enlaces te dirigen a los sitios web oficiales del gobierno colombiano. 
+                        No almacenamos ni procesamos tu información personal. Tu privacidad está protegida.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Disponibilidad</h3>
+                    <p>
+                        Los servicios están disponibles 24 horas al día, 7 días a la semana. 
+                        En caso de mantenimiento programado, cada entidad informará con anticipación.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>📱 Compatibilidad</h3>
+                    <p>
+                        Todos los certificados son compatibles con dispositivos móviles, tablets y computadores. 
+                        Puedes descargarlos desde cualquier dispositivo con conexión a internet.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>❓ Soporte</h3>
+                    <p>
+                        Si tienes problemas con algún certificado, contacta directamente con la entidad 
+                        correspondiente a través de sus canales oficiales de atención al ciudadano.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>
+                <strong>Certificados Colombia</strong> - Portal no oficial de acceso rápido a certificados gubernamentales
+            </p>
+            <p>
+                Los certificados son expedidos por las entidades oficiales del gobierno colombiano. 
+                Este sitio solo facilita el acceso a los portales oficiales.
+            </p>
+            <p>
+                <a href="https://www.gov.co" target="_blank" rel="noopener noreferrer">
+                    🌐 Visitar GOV.CO - Portal del Estado Colombiano
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Función para hacer tracking de clics
+        function trackClick(certificate) {
+            console.log(`Accediendo a: ${certificate}`);
+            
+            // Agregar efecto de loading al botón
+            const button = event.target;
+            button.classList.add('loading');
+            
+            // Opcional: agregar analytics aquí
+            // gtag('event', 'click', {
+            //     event_category: 'certificate_access',
+            //     event_label: certificate
+            // });
+        }
+
+        // Animación de entrada para las tarjetas
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas las tarjetas
+        document.querySelectorAll('.certificate-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Efecto de parallax sutil para el fondo
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const background = document.body;
+            background.style.transform = `translateY(${scrolled * 0.1}px)`;
+        });
+
+        // Preloader para los enlaces
+        document.querySelectorAll('.btn-access').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    this.style.pointerEvents = 'auto';
+                    this.classList.remove('loading');
+                }, 2000);
+            });
+        });
+
+        // Mejorar la experiencia en dispositivos táctiles
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.certificate-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 300);
+                });
+            });
+        }
+
+        // Mensaje de bienvenida
+        console.log('🏛️ Certificados Colombia - Portal de acceso rápido a certificados oficiales');
+        console.log('✅ Todos los enlaces dirigen a sitios web oficiales del gobierno');
+        console.log('🔒 Tu privacidad y seguridad están protegidas');
+    </script>
+</body>
+</html>
